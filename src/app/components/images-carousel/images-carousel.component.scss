@@ -1,0 +1,44 @@
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 4rem 0 7rem 0;
+
+  .carousel-box {
+    overflow: hidden;
+    // background-color: aqua;
+    width: 930px;
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out; 
+      gap: 30px;
+      
+      .carousel-image {
+        width: 300px;
+      }
+    }
+  }
+
+  .arrow {
+    background-color: transparent;
+    border: 0;
+    font-size: 4rem;
+    margin: 0 1rem;
+    font-weight: 400;
+  }
+
+  .arrow:hover {
+    transform: scale(1.05);
+  }
+}
+
+
+
+
+
+
+
+
+  
+

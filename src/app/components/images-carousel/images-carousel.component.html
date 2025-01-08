@@ -1,1 +1,11 @@
-<p>images-carousel works!</p>
+<div class="carousel-container">
+    <button (click)="prev()" class="arrow"><</button>
+    <div class="carousel-box">
+        <div class="carousel-track" [style.transform]="transform">
+          <ng-container *ngFor="let image of images; let i = index">
+            <img class="carousel-image" [src]="image" alt="Image">
+          </ng-container>
+        </div>
+      </div>
+      <button (click)="next()" class="arrow">></button>
+</div>
