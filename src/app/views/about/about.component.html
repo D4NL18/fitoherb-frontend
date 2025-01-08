@@ -1,1 +1,38 @@
 <app-navbar></app-navbar>
+<div class="about-container">
+    <h1>FITOHERB NORDESTE DISTRIBUIDORA</h1>
+    <p>
+        A FITOHERB NORDESTE DISTRIBUIDORA é uma das maiores distribuidoras do nordeste e referência nos segmentos de medicamentos fitoterápicos, alimentos nutracêuticos e naturais, apícolas, cosméticos, oficinais e suplementação esportiva.
+        <br />
+        <br />
+        Atuamos no mercado a mais de 23 anos, abrangendo os estados da Bahia, Sergipe, com foco no canal farma, canal alimentar e loja de produtos naturais. Centro de distribuição totalmente adequado às normas da Agência Nacional de Vigilância Sanitária – ANVISA.
+        <br />
+        <br />
+        Instalações modernas e automatizadas, com sede em Lauro de Freitas, região metropolitana de Salvador/BA.
+        <br />
+        <br />
+        Atendemos mais de 2.000 clientes com portfólio superior a 1.800 itens. Possuímos moderno sistema operacional, com automatização por leitura de código de barras que confere precisão, agilidade e rastreabilidade total dos lotes comercializados.
+        <br />
+        <br />
+        Parcerias sólidas e exclusivas com as maiores empresas fabricantes de medicamentos fitoterápicos, homeopáticos, produtos naturais e suplementos nutricionais do país.
+    </p>
+    <div class="cards-container">
+        <app-cards-about 
+            title="Missão" 
+            text="Distribuir e desenvolver marcas como soluções para o varejo, gerando resultados as empresas parceiras agregando valor através de produtos de qualidade e ótima prestação de serviço."
+        ></app-cards-about>
+        <app-cards-about 
+            title="Visão" 
+            text="Ser considerada uma das melhores distribuidoras do nordeste: Ágil, determinada, inovadora e eficiente. Focando nosso dinamismo, nossa coerência e ética pelos seus clientes, fornecedores e colaboradores."></app-cards-about>
+        <app-cards-about 
+            title="Valores" 
+            text="Ética<br />Respeito<br />Comprometimento<br />Profissionalismo<br />Honestidade<br />Transparência<br />Trabalho em equipe<br />Inovação<br />Aprendizado contínuo"></app-cards-about>
+    </div>
+    <app-images-carousel [numImg]="3" [sizeImg]="500"></app-images-carousel>
+    <video 
+    controls
+    poster=""
+    src="https://fitoherb.com.br/wp-content/uploads/2023/10/FITOHERB-INSTITUCIONAL-FINAL-H264-AdobeExpress.mp4"></video>
+
+</div>
+<app-footer></app-footer>
