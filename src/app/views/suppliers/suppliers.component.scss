@@ -1,0 +1,12 @@
+.suppliers-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--navSize);
+
+    h1 {
+        color: var(--mainColor);
+        font-size: 3rem;
+        font-weight: 600;
+        text-align: center;
+    }
+}
