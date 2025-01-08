@@ -1,9 +1,18 @@
 <div class="carousel-container">
     <button (click)="prev()" class="arrow"><</button>
-    <div class="carousel-box">
+    <div class="carousel-box" 
+    [ngStyle]="{
+      'width': (sizeImg * numImg) + 'px'
+      }">
         <div class="carousel-track" [style.transform]="transform">
           <ng-container *ngFor="let image of images; let i = index">
-            <img class="carousel-image" [src]="image" alt="Image">
+            <img 
+            [src]="image" 
+            alt="Image"
+            class="carousel-image"
+            [ngStyle]="{
+              'width': sizeImg + 'px'
+              }">
           </ng-container>
         </div>
       </div>

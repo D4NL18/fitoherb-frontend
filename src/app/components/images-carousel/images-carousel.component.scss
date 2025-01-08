@@ -6,16 +6,13 @@
 
   .carousel-box {
     overflow: hidden;
-    // background-color: aqua;
-    width: 930px;
 
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out; 
-      gap: 30px;
-      
+
       .carousel-image {
-        width: 300px;
+        padding: 0 15px !important;
       }
     }
   }
