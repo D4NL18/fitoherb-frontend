@@ -1,17 +1,23 @@
-h1 {
-    font-size: 3rem;
-    text-align: center;
-    color: var(--main);
-    text-transform: uppercase;
-    font-weight: 600;
-    line-height: 4rem;
-    margin: 5rem 0 0 0;
+.home-container {
+    padding-top: var(--navSize);
+    display: flex;
+    flex-direction: column;
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: var(--main);
+        text-transform: uppercase;
+        font-weight: 600;
+        line-height: 4rem;
+        margin: 5rem 0 0 0;
+    }
+    
+    p {
+        margin: 3rem 15rem;
+    }
+    
+    .carousel {
+        width: 33%;
+    }
 }
 
-p {
-    margin: 3rem 15rem;
-}
-
-.carousel {
-    width: 33%;
-}
