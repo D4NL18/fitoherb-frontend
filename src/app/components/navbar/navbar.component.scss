@@ -1,36 +1,39 @@
 .nav-container {
     display: flex;
     width: 100%;
-    // background-color: aqua;
     justify-content: center;
-    height: 20vh;
+    height: var(--navSize);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-
+    position: fixed;
+    background-color: white;
+    z-index: 10;
 
     .img-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        // background-color: aqua;
+
         img {
             height: 70%;
         }
     }
 
     ul {
-        // background-color: aquamarine;
         display: flex;
         justify-content: space-around;
         align-items: center;
-
+        padding: 2.5rem 0 0 8rem;
         gap: 8rem;
         list-style-type: none;
-        padding: 5rem;
 
         li a {
                 text-decoration: none;
                 outline: none;
                 color: black;
+                font-size: 1.25rem;
+        }
+        li a:hover {
+            font-size: 1.375rem;
         }
     }
 

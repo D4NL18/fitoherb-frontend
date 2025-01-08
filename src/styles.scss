@@ -1,5 +1,6 @@
 :root {
-    --main: #38582F
+    --mainColor: #38582F;
+    --navSize: 15vh;
 }
 
 * {
@@ -8,5 +9,6 @@
     box-sizing: border-box;
     font-family: 'Poppins';
 }
+
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

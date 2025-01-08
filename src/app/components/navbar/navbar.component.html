@@ -3,10 +3,45 @@
         <img src="https://fitoherb.com.br/wp-content/uploads/2020/09/logo.png" alt="logo">
     </div>
     <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">Quem Somos</a></li>
-        <li><a href="/products">Produtos</a></li>
-        <li><a href="/suppliers">Fornecedores</a></li>
-        <li><a href="/contact">Fale Conosco</a></li>
+        <li>
+            <a href="/" [ngStyle]="{
+                'color': thisPage == 'home' ? '#38582F' : '',
+                'font-weight': thisPage == 'home' ? '700' : '400'
+                }">
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="/about" [ngStyle]="{
+                'color': thisPage == 'about' ? '#38582F' : '',
+                'font-weight': thisPage == 'about' ? '700' : '400'
+                }">
+                Quem Somos
+            </a>
+        </li>
+        <li>
+            <a href="/products" [ngStyle]="{
+                'color': thisPage == 'products' ? '#38582F' : '',
+                'font-weight': thisPage == 'products' ? '700' : '400'
+                }">
+                Produtos
+            </a>
+        </li>
+        <li>
+            <a href="/suppliers" [ngStyle]="{
+                        'color': thisPage == 'suppliers' ? '#38582F' : '',
+                        'font-weight': thisPage == 'suppliers' ? '700' : '400'
+                        }">
+                Fornecedores
+            </a>
+        </li>
+        <li>
+            <a href="/contact" [ngStyle]="{
+                'color': thisPage == 'contact' ? '#38582F' : '',
+                'font-weight': thisPage == 'contact' ? '700' : '400'
+                }">
+                Fale Conosco
+            </a>
+        </li>
     </ul>
 </div>
