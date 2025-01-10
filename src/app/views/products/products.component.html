@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
 <div class="products-container">
-    
+    <h1>Conheça Nossos Produtos</h1>
+    <app-searchbar></app-searchbar>
+    <div class="gallery-container">
+        <app-filter></app-filter>
+        <app-product-gallery />
+        <app-filter [ngStyle]="{'visibility': 'hidden'}"></app-filter>
+    </div>
 </div>
 <app-footer></app-footer>

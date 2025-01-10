@@ -1,0 +1,24 @@
+.item-container {
+    display: flex;
+    flex-direction: column;
+
+    .title-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: transparent;
+        border: 0;
+        gap: 5rem;
+
+        span {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+    }
+
+}
+
+.checkbox-container {
+    padding: 0.25rem 1rem;
+}

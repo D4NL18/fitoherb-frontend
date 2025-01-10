@@ -1,0 +1,6 @@
+<div class="filter-container">
+    @for(item of categories; track item) {
+        <app-item [categories]="item"></app-item>
+    }
+    <app-button-apply></app-button-apply>
+</div>

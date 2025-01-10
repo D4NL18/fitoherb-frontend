@@ -1,0 +1,18 @@
+<div class="item-container">
+    <button class="title-box" (click)="handleClick()">
+        <span>{{    categories.title   }}</span>
+        @if(isClicked) {
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        }@else {
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        }
+        
+    </button>
+    <div class="checkbox-container">
+        @if (isClicked) {
+            @for (item of categories.boxes; track item) {
+                <app-checkbox [box]="item"></app-checkbox>
+            }
+        }
+    </div>
+</div>

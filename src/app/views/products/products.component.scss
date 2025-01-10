@@ -1,3 +1,25 @@
 .products-container {
     padding-top: var(--navSize);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    
+
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        color: var(--mainColor);
+        font-weight: 600;
+        text-transform: uppercase;
+        margin: 3rem;
+    }
+
+    .gallery-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 3rem 0;
+        width: 90%;
+    }
+
 }

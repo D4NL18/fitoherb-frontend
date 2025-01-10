@@ -1,0 +1,17 @@
+.pagelist-container {
+    display: flex;
+    gap: 3rem;
+    margin: 1rem 0 5rem 0;
+
+    .pagination-arrow {
+        width: 3.5rem;
+        height: 3.5rem;
+        border: solid 1px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--mainColor);
+        border-radius: 0.5rem;
+        color: white;
+    }
+}
