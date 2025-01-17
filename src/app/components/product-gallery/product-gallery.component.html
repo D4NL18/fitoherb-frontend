@@ -1,8 +1,10 @@
 <div class="gallery-container">
-    @for (item of paginatedProducts; track item) {
-    <app-product-item [imgUrl]="item.image" [category]="item.category" [title]="item.name"
-        [description]="item.description"></app-product-item>
-    }
+    <div class="items-container">
+        @for (item of paginatedProducts; track item) {
+            <app-product-item [imgUrl]="item.productImageUrl" [category]="item.productCategory.name" [title]="item.productName"
+                [description]="item.productDescription"></app-product-item>
+            }
+    </div>
     <div class="pagelist-container">
         <app-pagelist [pags]="pags()" (pageChange)="onPageChange($event)"></app-pagelist>
     </div>

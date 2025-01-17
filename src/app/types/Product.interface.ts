@@ -1,6 +1,12 @@
+import { ProductCategory } from "./ProductCategory.interface";
+import { Supplier } from "./Supplier.interface";
+
 export interface Product {
-    image: string,
-    description: string,
-    name: string,
-    category: string
+    idProduct: string;
+    productName: string;
+    price_in_cents: number;
+    productDescription: string;
+    productImageUrl: string;
+    supplier: Supplier;
+    productCategory: ProductCategory;
 }

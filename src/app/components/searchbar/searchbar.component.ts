@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({
@@ -10,4 +10,13 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class SearchbarComponent {
 
+  @Output() filterText: EventEmitter<string> = new EventEmitter<string>()
+
+  handleTextChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    
+    if (inputElement && inputElement.value) {
+      this.filterText.emit(inputElement.value);
+    }
+  }
 }
