@@ -12,7 +12,8 @@
       transition: transform 0.5s ease-in-out; 
 
       .carousel-image {
-        padding: 0 15px !important;
+        padding: 0 50px !important;
+        object-fit: fill;
       }
     }
   }

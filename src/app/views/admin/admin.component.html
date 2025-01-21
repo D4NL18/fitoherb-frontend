@@ -1,0 +1,32 @@
+<form [formGroup]="supplierForm" (ngSubmit)="addSupplier()">
+    <label for="supplierName">Supplier Name:</label>
+    <input
+      type="text"
+      id="supplierName"
+      formControlName="supplierName"
+      placeholder="Enter supplier name"
+    />
+    <div *ngIf="supplierForm.get('supplierName')?.invalid && supplierForm.get('supplierName')?.touched">
+      Supplier name is required.
+    </div>
+  
+    <label for="imageInput">Supplier Image:</label>
+    <input
+      type="file"
+      id="imageInput"
+      (change)="onFileSelect($event)"
+    />
+    <div *ngIf="supplierForm.get('image')?.invalid && supplierForm.get('image')?.touched">
+      Image is required.
+    </div>
+  
+    <label for="isMaster">Is Master:</label>
+    <input
+      type="checkbox"
+      id="isMaster"
+      formControlName="isMaster"
+    />
+  
+    <button type="submit" [disabled]="supplierForm.invalid">Add Supplier</button>
+  </form>
+  

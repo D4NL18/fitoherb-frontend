@@ -4,6 +4,7 @@ import { AboutComponent } from './views/about/about.component';
 import { ProductsComponent } from './views/products/products.component';
 import { SuppliersComponent } from './views/suppliers/suppliers.component';
 import { ContactComponent } from './views/contact/contact.component';
+import { AdminComponent } from './views/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +26,9 @@ export const routes: Routes = [
     {
         path: "contact",
         component: ContactComponent
+    },
+    {
+        path: "admin",
+        component: AdminComponent
     }
 ];
