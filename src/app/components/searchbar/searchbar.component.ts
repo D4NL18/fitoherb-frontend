@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
+import { SearchProductsService } from '../../services/searchProducts/search-products.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -10,13 +11,13 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class SearchbarComponent {
 
-  @Output() filterText: EventEmitter<string> = new EventEmitter<string>()
+  searchProductsService = inject(SearchProductsService)
 
   handleTextChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    
-    if (inputElement && inputElement.value) {
-      this.filterText.emit(inputElement.value);
+    const input = event.target as HTMLInputElement;
+
+    if(event.target) {
+      this.searchProductsService.setSearchText = input.value
     }
   }
 }

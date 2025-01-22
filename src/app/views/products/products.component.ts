@@ -15,10 +15,4 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent {
 
-  filterText: string = ""
-
-  handleFilterText(text: string) {
-    this.filterText = text;
-  }
-
 }

@@ -1,11 +1,9 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, inject } from '@angular/core';
 import { ProductItemComponent } from './product-item/product-item.component';
-import { CommonModule } from '@angular/common';
 import { PagelistComponent } from '../pagelist/pagelist.component';
 import { Product } from '../../types/Product.interface';
-import ProductsList from "../../products"
 import { ProductsService } from '../../services/products/products.service';
-import { Observable } from 'rxjs';
+import { SearchProductsService } from '../../services/searchProducts/search-products.service';
 
 @Component({
   selector: 'app-product-gallery',
@@ -16,20 +14,35 @@ import { Observable } from 'rxjs';
 })
 export class ProductGalleryComponent implements OnInit, OnChanges {
 
-  constructor(private productsService: ProductsService) {}
-  
+  searchProductsService = inject(SearchProductsService)
+  productsService = inject(ProductsService)
+
+  updatedText$ = this.searchProductsService.textUpdated$;
+
   products: Product[] = [];
   updatedProducts: Product[] = []
   itemsPerPage = 12;
   paginatedProducts: Product[] = [];
-  @Input() filterText: string = ""
+  filterText: string = ""
 
+  constructor() {
+    this.updatedText$.subscribe((text) => {
+      this.filterText = text
+      if(this.filterText != "") {
+        this.loadFilterByNameProducts(this.filterText)
+      }else {
+        this.updatedProducts = this.products
+        this.updatePaginatedProducts()
+      }
+
+    })
+  }
+  
   ngOnInit() {
     this.loadProducts()
   }
 
   ngOnChanges(): void {
-    console.log(this.filterText)
       if(this.filterText.length >=2) {
         this.loadFilterByNameProducts(this.filterText)
       }else {

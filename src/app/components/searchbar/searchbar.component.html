@@ -1,4 +1,4 @@
 <div class="searchbar-container">
-    <input type="text" (keyup)="handleTextChange($event)" (change)="handleTextChange($event)" (keypress)="handleTextChange($event)">
+    <input type="text" (input)="handleTextChange($event)">
     <button><mat-icon class="icon">search</mat-icon></button>
 </div>
