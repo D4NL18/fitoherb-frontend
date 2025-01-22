@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, OnChanges, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { PagelistComponent } from '../pagelist/pagelist.component';
 import { Product } from '../../types/Product.interface';
 import { ProductsService } from '../../services/products/products.service';
 import { SearchProductsService } from '../../services/searchProducts/search-products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-gallery',
@@ -12,7 +13,7 @@ import { SearchProductsService } from '../../services/searchProducts/search-prod
   templateUrl: './product-gallery.component.html',
   styleUrl: './product-gallery.component.scss'
 })
-export class ProductGalleryComponent implements OnInit, OnChanges {
+export class ProductGalleryComponent implements OnInit, OnDestroy {
 
   searchProductsService = inject(SearchProductsService)
   productsService = inject(ProductsService)
@@ -25,8 +26,10 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
   paginatedProducts: Product[] = [];
   filterText: string = ""
 
+  updatedTextSubscription = new Subscription()
+
   constructor() {
-    this.updatedText$.subscribe((text) => {
+    const sub = this.updatedText$.subscribe((text) => {
       this.filterText = text
       if(this.filterText != "") {
         this.loadFilterByNameProducts(this.filterText)
@@ -34,21 +37,16 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
         this.updatedProducts = this.products
         this.updatePaginatedProducts()
       }
-
     })
+    this.updatedTextSubscription.add(sub)
   }
-  
+
   ngOnInit() {
     this.loadProducts()
   }
 
-  ngOnChanges(): void {
-      if(this.filterText.length >=2) {
-        this.loadFilterByNameProducts(this.filterText)
-      }else {
-        this.updatedProducts = this.products
-        this.updatePaginatedProducts()
-      }
+  ngOnDestroy(): void {
+    this.updatedTextSubscription.unsubscribe()
   }
 
   loadProducts(): void {
