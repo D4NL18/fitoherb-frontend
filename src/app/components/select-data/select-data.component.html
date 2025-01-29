@@ -1,0 +1,6 @@
+<select form="select-data" (change)="handleChange($event)">
+    @for(item of items; track item) {
+        <option [value]="item.value">{{item.text}}</option>
+    }
+</select>
+  

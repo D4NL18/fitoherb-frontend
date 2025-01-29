@@ -1,0 +1,15 @@
+$fontsize: 1.25rem;
+
+a {
+    color: red;
+    margin: 0;
+    font-size: $fontsize;
+
+    .icon {
+        font-size: $fontsize;
+        width: $fontsize;
+        height: $fontsize;
+        margin: 0 0.25rem;
+    }
+}
+

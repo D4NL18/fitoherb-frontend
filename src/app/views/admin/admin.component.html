@@ -1,4 +1,24 @@
-<form [formGroup]="supplierForm" (ngSubmit)="addSupplier()">
+<app-navbar></app-navbar>
+<div class="entire-page-admin">
+  <div class="select-data-box" >
+    <app-select-data [items]="selectItems"></app-select-data>
+    <app-button></app-button>
+  </div>
+  <div class="table-container">
+    @if(selectedItem == "products") {
+      <app-table [data]="products" [columns]="productColumns"></app-table>
+    }@else if (selectedItem == "suppliers") {
+      <app-table [data]="suppliers" [columns]="supplierColumns"></app-table>
+    }@else if (selectedItem == "categories") {
+      <app-table [data]="categories" [columns]="categoryColumns"></app-table>
+    }
+  </div>
+  
+</div>
+
+
+
+<!-- <form [formGroup]="supplierForm" (ngSubmit)="addSupplier()">
     <label for="supplierName">Supplier Name:</label>
     <input
       type="text"
@@ -29,4 +49,4 @@
   
     <button type="submit" [disabled]="supplierForm.invalid">Add Supplier</button>
   </form>
-  
+   -->

@@ -1,0 +1,12 @@
+select {
+    padding: 0.5rem 0.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.25rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-weight: 500;
+}
+
+select:hover {
+    transform: scale(1.01);
+}
