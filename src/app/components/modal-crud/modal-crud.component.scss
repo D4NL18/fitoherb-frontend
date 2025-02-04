@@ -1,0 +1,66 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    cursor: default;
+    border: 0;
+}
+
+.entire-modal {
+    background-color: #FEFEFE;
+    width: 75vw;
+    max-height: 75vh;
+    position: absolute;
+    left: 12.5vw;
+    top: 12.5vh;
+    z-index: 20;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    border: solid 1px black;
+    padding: 0 3rem 3rem 3rem;
+
+    .close-modal-box {
+        display: flex;
+        justify-content: flex-end;
+        margin: 2rem 0 0 0;
+
+        button {
+            background-color: transparent;
+            border: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+}
+
+ /* Scroll Vertical e Horizontal */
+ .entire-modal::-webkit-scrollbar {
+    width: 8px; /* Largura do scroll vertical */
+    
+}
+
+.entire-modal::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1); /* Cor da parte clicável do scroll */
+    border-radius: 4px; /* Bordas arredondadas */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borda suave ao redor do thumb */
+    
+}
+
+.entire-modal::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Cor do thumb ao passar o mouse */
+}
+
+.entire-modal::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.075); /* Cor do fundo do scroll */
+    border-radius: 4px; /* Bordas arredondadas */
+}

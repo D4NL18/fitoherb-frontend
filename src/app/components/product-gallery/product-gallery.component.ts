@@ -43,6 +43,7 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadProducts()
+    console.log(this.products[11])
   }
 
   ngOnDestroy(): void {
@@ -52,6 +53,7 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
   loadProducts(): void {
     this.productsService.getAllProducts().subscribe({
       next: (response) => {
+        console.log("Response: ", response)
         this.products = response;
         this.updatedProducts = this.products;
         this.updatePaginatedProducts();
@@ -94,6 +96,7 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedProducts = this.updatedProducts.slice(startIndex, endIndex);
+    console.log(this.paginatedProducts)
   }
 
   totalPages() {

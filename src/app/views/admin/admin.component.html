@@ -2,7 +2,7 @@
 <div class="entire-page-admin">
   <div class="select-data-box" >
     <app-select-data [items]="selectItems"></app-select-data>
-    <app-button></app-button>
+    <app-button (clicked)="handleClick()"></app-button>
   </div>
   <div class="table-container">
     @if(selectedItem == "products") {
@@ -13,8 +13,11 @@
       <app-table [data]="categories" [columns]="categoryColumns"></app-table>
     }
   </div>
-  
 </div>
+
+@if(isModalOpen) {
+  <app-modal-crud (clicked)="handleModalClose()" />
+}
 
 
 

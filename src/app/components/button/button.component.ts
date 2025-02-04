@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { SelectedItemService } from '../../services/selectedItem/selected-item.service';
 import { Subscription } from 'rxjs';
 
@@ -13,6 +13,10 @@ export class ButtonComponent implements OnDestroy {
 
   selectedItemService = inject(SelectedItemService)
   updatedItem$ = this.selectedItemService.textUpdated$;
+
+  @Input() buttonType: string = "button"
+
+  @Output() clicked = new EventEmitter<any>()
 
   updatedTextSubscription = new Subscription()
   
@@ -38,7 +42,7 @@ export class ButtonComponent implements OnDestroy {
   }
 
   handleClick() {
-    console.log("button works")
+    this.clicked.emit()
   }
 
 }

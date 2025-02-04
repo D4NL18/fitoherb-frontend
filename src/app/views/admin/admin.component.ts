@@ -15,11 +15,12 @@ import { ButtonComponent } from "../../components/button/button.component";
 import { SelectedItemService } from '../../services/selectedItem/selected-item.service';
 import { Subscription } from 'rxjs';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { ModalCRUDComponent } from "../../components/modal-crud/modal-crud.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ExitButtonComponent, ButtonComponent, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ButtonComponent, NavbarComponent, ModalCRUDComponent],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
@@ -68,6 +69,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   suppliers: Supplier[] = []
   categories: ProductCategory[] = []
   selectedItem: string = "products"
+  isModalOpen: boolean = false
   
   constructor() {
     const sub = this.updatedItem$.subscribe((text) => {
@@ -134,6 +136,14 @@ export class AdminComponent implements OnInit, OnDestroy {
         console.log("Erro ao receber produtos", err);
       }
     });
+  }
+
+  handleClick() {
+    this.isModalOpen = !this.isModalOpen
+  }
+
+  handleModalClose() {
+    this.isModalOpen = false
   }
 
 

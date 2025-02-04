@@ -1,0 +1,59 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+    <div class="form-item">
+        <label>Nome do Produto</label>
+        <input type="text" formControlName="productName" />
+        @if(productForm.get('productName')?.invalid && productForm.get('productName')!.touched) {
+            <p>Nome inválido</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Preço</label>
+        <input type="number" formControlName="price_in_cents" />
+        @if(productForm.get('price_in_cents')?.invalid && productForm.get('price_in_cents')!.touched) {
+            <p>Preço inválido</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Descrição</label>
+        <input type="text" formControlName="productDescription" />
+        @if(productForm.get('productDescription')?.invalid && productForm.get('productDescription')!.touched) {
+            <p>Descrição inválida</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Imagem</label>
+        <input type="file" (change)="onFileSelected($event)" formControlName="productImageUrl" />
+        @if(productForm.get('productImageUrl')?.invalid && productForm.get('productImageUrl')!.touched) {
+            <p>Imagem inválida</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Fornecedor</label>
+        <select formControlName="supplier">
+            @for(supplier of suppliers; track supplier) {
+                <option [value]="supplier.supplierId">
+                    {{ supplier.supplierName }}
+                </option>
+            }
+        </select>
+        @if(productForm.get('supplier')?.invalid && productForm.get('supplier')!.touched) {
+            <p>Fornecedor inválido</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Categoria</label>
+        <select formControlName="productCategory">
+            @for(category of productsCategory; track category) {
+                <option [value]="category.idCategory">
+                    {{ category.name }}
+                </option>
+            }
+        </select>
+        @if(productForm.get('productCategory')?.invalid && productForm.get('productCategory')!.touched) {
+            <p>Categoria inválida</p>
+        }
+    </div>
+    <div class="form-item">
+        <app-button (clicked)="onSubmit()" type="submit"></app-button>
+    </div>
+</form>

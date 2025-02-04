@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-item',
@@ -13,4 +13,5 @@ export class ProductItemComponent {
   @Input() category: string = ""
   @Input() description: string = ""
   @Input() imgUrl: string = ""
+
 }
