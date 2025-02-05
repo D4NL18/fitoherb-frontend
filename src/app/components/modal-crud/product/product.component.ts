@@ -73,10 +73,25 @@ export class ProductComponent implements OnInit {
       this.productsService.getProductById(this.idEditing).subscribe({
         next: (response) => {
           this.product = response
+          this.productForm.patchValue({
+            productName: this.product.productName,
+            price_in_cents: this.product.price_in_cents,
+            productDescription: this.product.productDescription,
+            supplier: this.product.supplier.supplierName,
+            productCategory: this.product.productCategory.name
+          });
         },
         error: (err) => {
           console.log("Erro ao resgatar produto", err)
         }
+      })
+      this.productForm = this.fb.group({
+        productName: ['', Validators.required],
+        price_in_cents: [0, Validators.required],
+        productDescription: ['', Validators.required],
+        productImageUrl: [''],
+        supplier: ['', Validators.required],
+        productCategory: ['', Validators.required]
       })
     }
   }

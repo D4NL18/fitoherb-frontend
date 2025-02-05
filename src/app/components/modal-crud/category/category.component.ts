@@ -32,6 +32,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.categoryService.getCategoryById(this.idEditing).subscribe({
         next: (response) => {
           this.category = response
+          this.categoryForm.patchValue({
+            categoryName: this.category.name,
+          });
         },
         error: (err) => {
           console.log("Erro ao resgatar categoria", err)

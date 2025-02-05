@@ -19,7 +19,7 @@ export class ProductsService {
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`)
+    return this.http.get<Product>(`${this.apiUrl}/id=${id}`)
   }
 
   addProduct(productName: string, price_in_cents: number, productDescription: string, productImage: File, supplier: string, productCategory: string): Observable<Product[]> {

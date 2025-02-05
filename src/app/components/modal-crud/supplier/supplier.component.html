@@ -5,7 +5,6 @@
           type="text"
           id="supplierName"
           formControlName="supplierName"
-          [value]="supplier.supplierName"
         />
         @if(supplierForm.get('supplierName')?.invalid && supplierForm.get('supplierName')?.touched) {
             <div>
@@ -15,7 +14,7 @@
     </div>
     <div class="form-item">
         <label>Supplier Image:</label>
-        <input type="file" (change)="onFileSelect($event)" formControlName="imagePath" [value]="supplier.imagePath" />
+        <input type="file" (change)="onFileSelect($event)" formControlName="imagePath" />
         @if(supplierForm.get('imagePath')?.invalid && supplierForm.get('imagePath')?.touched) {
             <div>
               Image is required.
@@ -28,7 +27,6 @@
         type="checkbox"
         id="isMaster"
         formControlName="isMaster"
-        [value]="supplier.master"
       />
     </div>
     <div class="form-item">

@@ -30,20 +30,24 @@ export class SupplierComponent implements OnInit {
       imagePath: ['', Validators.required],
       isMaster: [false]
     })
+    if(this.idEditing != "") {
       this.supplierService.getSupplierById(this.idEditing).subscribe({
         next: (response) => {
           this.supplier = response
+          this.supplierForm.patchValue({
+            supplierName: this.supplier.supplierName,
+            isMaster: this.supplier.master,
+          });
         },
         error: (err) => {
           console.log("Erro ao resgatar fornecedor", err)
         }
       })
-      if(this.idEditing != "") {
-        this.supplierForm = this.fb.group({
-          supplierName: [this.supplier.supplierName, Validators.required],
-          imagePath: [this.supplier.imagePath],
-          isMaster: [this.supplier.master]
-        })
+      this.supplierForm = this.fb.group({
+        supplierName: ['', Validators.required],
+        imagePath: [''],
+        isMaster: ['']
+      })
     }
   }
 
