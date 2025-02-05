@@ -47,6 +47,7 @@ export class SupplierComponent implements OnInit {
         this.supplierService.addSupplier(supplierName, imagePath, isMaster).subscribe({
           next: (response) => {
             console.log('Supplier added successfully:', response);
+            this.sentForm.emit()
           },
           error: (err) => {
             console.error('Error adding supplier:', err);

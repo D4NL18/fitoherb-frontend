@@ -95,6 +95,7 @@ export class ProductComponent implements OnInit {
         .subscribe({
         next: (response) => {
           console.log('Supplier added successfully:', response);
+          this.sentForm.emit()
         },
         error: (err) => {
           console.error('Error adding supplier:', err);

@@ -16,5 +16,5 @@
 </div>
 
 @if(isModalOpen) {
-  <app-modal-crud (clicked)="handleModalClose()" [selectedItem]="selectedItem" />
+  <app-modal-crud (clicked)="handleModalClose()" [selectedItem]="selectedItem" (sentForm)="handleCreated()" />
 }

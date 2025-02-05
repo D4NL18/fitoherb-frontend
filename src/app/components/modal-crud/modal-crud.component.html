@@ -4,12 +4,12 @@
         <button (click)="handleCloseModal()"><mat-icon>close</mat-icon></button>
     </div>
     @if(selectedItem == "products") {
-        <app-product (sentForm)="handleCloseModal()" />
+        <app-product (sentForm)="handleSentForm()" />
     }@else if(selectedItem == "users") {
-        <app-user (sentForm)="handleCloseModal()" />
+        <app-user (sentForm)="handleSentForm()" />
     }@else if(selectedItem == "categories") {
-        <app-category (sentForm)="handleCloseModal()" />
+        <app-category (sentForm)="handleSentForm()" />
     }@else if(selectedItem == "suppliers") {
-        <app-supplier />
+        <app-supplier (sentForm)="handleSentForm()" />
     }
 </div>

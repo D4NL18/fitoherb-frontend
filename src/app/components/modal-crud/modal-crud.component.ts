@@ -18,10 +18,14 @@ export class ModalCRUDComponent {
 
 
   @Output() clicked = new EventEmitter<any>()
+  @Output() sentForm = new EventEmitter<any>()
   @Input() selectedItem: string = "products"
 
   handleCloseModal(){
     this.clicked.emit()
+  }
+  handleSentForm(){
+    this.sentForm.emit()
   }
 
 }

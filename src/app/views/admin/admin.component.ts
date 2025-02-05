@@ -146,4 +146,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.isModalOpen = false
   }
 
+  handleCreated() {
+    this.handleModalClose();
+    this.loadProducts()
+    this.loadSupplier()
+    this.loadCategories()
+  }
+
 }
