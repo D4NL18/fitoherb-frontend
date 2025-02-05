@@ -8,17 +8,17 @@
       </tr>
     </thead>
     <tbody>
-        @for(row of data; track row) {
+        @for(row of data; track row; let i = $index) {
             <tr>
                 @for(col of columns; track col) {
                     @if(row[col.key] == true) {
                         <td ><mat-icon>check</mat-icon></td>
                     }@else if (row[col.key] == false) {
                         <td><mat-icon>close</mat-icon></td>
-                    }@else if (row[col.key] == "edit" || row[col.key] == "delete") {
-                        <td><button><mat-icon class="icon">{{row[col.key]}}</mat-icon></button></td>
+                    }@else if (row[col.key] == "edit") {
+                        <td><button><mat-icon class="icon" (click)="handleEdit(i)">{{row[col.key]}}</mat-icon></button></td>
                     }@else if (row[col.key] == "delete") {
-                        <td><button><mat-icon class="icon">{{row[col.key]}}</mat-icon></button></td>
+                        <td><button (click)="handleDelete(i)"><mat-icon class="icon">{{row[col.key]}}</mat-icon></button></td>
                     }@else {
                         <td >{{ row[col.key] }}</td>
                     }

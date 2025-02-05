@@ -70,6 +70,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   categories: ProductCategory[] = []
   selectedItem: string = "products"
   isModalOpen: boolean = false
+  idEditing: string = ""
   
   constructor() {
     const sub = this.updatedItem$.subscribe((text) => {
@@ -140,10 +141,12 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   handleClick() {
     this.isModalOpen = !this.isModalOpen
+    this.idEditing = ""
   }
 
   handleModalClose() {
     this.isModalOpen = false
+    this.idEditing = ""
   }
 
   handleCreated() {
@@ -151,6 +154,64 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.loadProducts()
     this.loadSupplier()
     this.loadCategories()
+  }
+
+  handleDeleteCategory(i: number) {
+    const category = this.categories[i]
+
+    this.categoryService.deleteCategory(category.idCategory).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.loadCategories()
+      },
+      error: (err) => {
+        console.log("Erro ao deletar categoria: ", err)
+      }
+    })
+    
+  }
+  handleDeleteSupplier(i: number) {
+    const supplier = this.suppliers[i]
+
+    this.supplierService.deleteSupplier(supplier.supplierId).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.loadSupplier()
+      },
+      error: (err) => {
+        console.log("Erro ao deletar fornecedor: ", err)
+      }
+    })
+    
+  }
+  handleDeleteProduct(i: number) {
+    const product = this.products[i]
+
+    this.productsService.deleteProduct(product.idProduct).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.loadProducts()
+      },
+      error: (err) => {
+        console.log("Erro ao deletar categoria: ", err)
+      }
+    })
+    
+  }
+
+  handleEditProduct(i: number) {
+    this.isModalOpen = true
+    this.idEditing = this.products[i].idProduct
+  }
+
+  handleEditSupplier(i: number) {
+    this.isModalOpen = true
+    this.idEditing = this.suppliers[i].supplierId
+  }
+
+  handleEditCategory(i: number) {
+    this.isModalOpen = true
+    this.idEditing = this.categories[i].idCategory
   }
 
 }

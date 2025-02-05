@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-
+  @Input() idEditing: string = ""
 }

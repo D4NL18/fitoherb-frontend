@@ -6,15 +6,33 @@
   </div>
   <div class="table-container">
     @if(selectedItem == "products") {
-      <app-table [data]="products" [columns]="productColumns"></app-table>
+      <app-table 
+      [data]="products" 
+      [columns]="productColumns" 
+      (clickedDelete)="handleDeleteProduct($event)"
+      (clickedEdit)="handleEditProduct($event)"
+      >
+    </app-table>
     }@else if (selectedItem == "suppliers") {
-      <app-table [data]="suppliers" [columns]="supplierColumns"></app-table>
+      <app-table 
+      [data]="suppliers" 
+      [columns]="supplierColumns" 
+      (clickedDelete)="handleDeleteSupplier($event)"
+      (clickedEdit)="handleEditSupplier($event)"
+      >
+    </app-table>
     }@else if (selectedItem == "categories") {
-      <app-table [data]="categories" [columns]="categoryColumns"></app-table>
+      <app-table 
+      [data]="categories" 
+      [columns]="categoryColumns" 
+      (clickedDelete)="handleDeleteCategory($event)"
+      (clickedEdit)="handleEditCategory($event)"
+      >
+    </app-table>
     }
   </div>
 </div>
 
 @if(isModalOpen) {
-  <app-modal-crud (clicked)="handleModalClose()" [selectedItem]="selectedItem" (sentForm)="handleCreated()" />
+  <app-modal-crud (clicked)="handleModalClose()" [selectedItem]="selectedItem" (sentForm)="handleCreated()" [idEditing]="idEditing" />
 }

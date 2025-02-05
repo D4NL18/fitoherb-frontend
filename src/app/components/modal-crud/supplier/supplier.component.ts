@@ -1,7 +1,8 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SuppliersService } from '../../../services/suppliers/suppliers.service';
 import { ButtonComponent } from "../../button/button.component";
+import { Supplier } from '../../../types/Supplier.interface';
 
 @Component({
   selector: 'app-supplier',
@@ -12,15 +13,16 @@ import { ButtonComponent } from "../../button/button.component";
 })
 export class SupplierComponent implements OnInit {
 
-
   fb = inject(FormBuilder)
   supplierService = inject(SuppliersService)
 
   supplierForm!: FormGroup;
 
   selectedFile: File | null = null;
+  supplier: Supplier = {supplierId: "", supplierName: "", imagePath: "", master: false}
 
   @Output() sentForm = new EventEmitter<void>()
+  @Input() idEditing: string = ""
 
   ngOnInit(): void {
     this.supplierForm = this.fb.group({
@@ -28,6 +30,21 @@ export class SupplierComponent implements OnInit {
       imagePath: ['', Validators.required],
       isMaster: [false]
     })
+      this.supplierService.getSupplierById(this.idEditing).subscribe({
+        next: (response) => {
+          this.supplier = response
+        },
+        error: (err) => {
+          console.log("Erro ao resgatar fornecedor", err)
+        }
+      })
+      if(this.idEditing != "") {
+        this.supplierForm = this.fb.group({
+          supplierName: [this.supplier.supplierName, Validators.required],
+          imagePath: [this.supplier.imagePath],
+          isMaster: [this.supplier.master]
+        })
+    }
   }
 
   onFileSelect(event: Event) {
@@ -38,7 +55,7 @@ export class SupplierComponent implements OnInit {
   }
 
     onSubmit(): void {
-      if(this.supplierForm.valid) {
+      if(this.supplierForm.valid  && this.idEditing == "") {
         const formValues = this.supplierForm.value;
         const supplierName = formValues.supplierName;
         const imagePath = this.selectedFile!
@@ -53,7 +70,24 @@ export class SupplierComponent implements OnInit {
             console.error('Error adding supplier:', err);
           }
         });
-      } else {
+      }
+      else if(this.supplierForm.valid && this.idEditing != "") {
+        const formValues = this.supplierForm.value;
+        const supplierName = formValues.supplierName;
+        const imagePath = this.selectedFile!
+        const isMaster = formValues.isMaster;
+  
+        this.supplierService.editSupplier(this.idEditing, supplierName, imagePath, isMaster).subscribe({
+          next: (response) => {
+            console.log("Categoria editada com sucesso: ", response)
+            this.sentForm.emit()
+          },
+          error: (err) => {
+            console.log("Erro ao editar categoria: ", err)
+          }
+        })
+      }
+      else {
         console.error('Form is invalid');
       }
     }

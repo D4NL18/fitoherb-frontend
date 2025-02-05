@@ -1,35 +1,35 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
     <div class="form-item">
         <label>Nome do Produto</label>
-        <input type="text" formControlName="productName" />
+        <input type="text" formControlName="productName" [value]="product.productName" />
         @if(productForm.get('productName')?.invalid && productForm.get('productName')!.touched) {
             <p>Nome inválido</p>
         }
     </div>
     <div class="form-item">
         <label>Preço</label>
-        <input type="number" formControlName="price_in_cents" />
+        <input type="number" formControlName="price_in_cents" [value]="product.price_in_cents" />
         @if(productForm.get('price_in_cents')?.invalid && productForm.get('price_in_cents')!.touched) {
             <p>Preço inválido</p>
         }
     </div>
     <div class="form-item">
         <label>Descrição</label>
-        <input type="text" formControlName="productDescription" />
+        <input type="text" formControlName="productDescription" [value]="product.productDescription" />
         @if(productForm.get('productDescription')?.invalid && productForm.get('productDescription')!.touched) {
             <p>Descrição inválida</p>
         }
     </div>
     <div class="form-item">
         <label>Imagem</label>
-        <input type="file" (change)="onFileSelected($event)" formControlName="productImageUrl" />
+        <input type="file" (change)="onFileSelected($event)" formControlName="productImageUrl" [value]="product.productImageUrl" />
         @if(productForm.get('productImageUrl')?.invalid && productForm.get('productImageUrl')!.touched) {
             <p>Imagem inválida</p>
         }
     </div>
     <div class="form-item">
         <label>Fornecedor</label>
-        <select formControlName="supplier">
+        <select formControlName="supplier" [value]="product.supplier.supplierId">
             @for(supplier of suppliers; track supplier) {
                 <option [value]="supplier.supplierId">
                     {{ supplier.supplierName }}

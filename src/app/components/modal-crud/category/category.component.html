@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
     <div class="form-item">
         <label>Nome da Categoria</label>
-        <input type="text" formControlName="categoryName" />
+        <input type="text" formControlName="categoryName" [value]="category.name" />
         @if(categoryForm.get('categoryName')?.invalid && categoryForm.get('categoryName')!.touched) {
             <p>Nome inválido</p>
         }
