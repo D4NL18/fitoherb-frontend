@@ -146,44 +146,4 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.isModalOpen = false
   }
 
-
-  // supplierForm!: FormGroup;
-
-  // constructor(private fb: FormBuilder) {
-  // }
-
-  // ngOnInit(): void {
-  //   this.supplierForm = this.fb.group({
-  //     supplierName: ['', Validators.required],
-  //     image: [null, Validators.required],
-  //     isMaster: [false]
-  //   });
-  // }
-
-  // onFileSelect(event: any): void {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     this.supplierForm.patchValue({ image: file });
-  //   }
-  // }
-
-  // addSupplier(): void {
-  //   if (this.supplierForm.valid) {
-  //     const formValues = this.supplierForm.value;
-  //     const supplierName = formValues.supplierName;
-  //     const image = formValues.image;
-  //     const isMaster = formValues.isMaster;
-
-  //     this.supplierService.addSupplier(supplierName, image, isMaster).subscribe({
-  //       next: (response) => {
-  //         console.log('Supplier added successfully:', response);
-  //       },
-  //       error: (err) => {
-  //         console.error('Error adding supplier:', err);
-  //       }
-  //     });
-  //   } else {
-  //     console.error('Form is invalid');
-  //   }
-  // }
 }

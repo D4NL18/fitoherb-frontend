@@ -3,5 +3,13 @@
     <div class="close-modal-box">
         <button (click)="handleCloseModal()"><mat-icon>close</mat-icon></button>
     </div>
-    <app-product />
+    @if(selectedItem == "products") {
+        <app-product (sentForm)="handleCloseModal()" />
+    }@else if(selectedItem == "users") {
+        <app-user (sentForm)="handleCloseModal()" />
+    }@else if(selectedItem == "categories") {
+        <app-category (sentForm)="handleCloseModal()" />
+    }@else if(selectedItem == "suppliers") {
+        <app-supplier />
+    }
 </div>

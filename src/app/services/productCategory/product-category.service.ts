@@ -13,6 +13,14 @@ export class ProductCategoryService {
   constructor(private http: HttpClient) { }
 
   getAllCategories(): Observable<ProductCategory[]> {
-      return this.http.get<ProductCategory[]>(`${this.apiUrl}`)
-    }
+    return this.http.get<ProductCategory[]>(`${this.apiUrl}`)
+  }
+
+  addCategory(categoryName: string): Observable<ProductCategory[]> {
+    const categoryData = { name: categoryName };
+    return this.http.post<ProductCategory[]>(this.apiUrl, categoryData, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+    
 }

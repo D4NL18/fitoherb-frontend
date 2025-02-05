@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
+    <div class="form-item">
+        <label>Nome da Categoria</label>
+        <input type="text" formControlName="categoryName" />
+        @if(categoryForm.get('categoryName')?.invalid && categoryForm.get('categoryName')!.touched) {
+            <p>Nome inválido</p>
+        }
+    </div>
+    <div class="form-item button">
+        <app-button (clicked)="onSubmit()" type="submit"></app-button>
+    </div>
+</form>

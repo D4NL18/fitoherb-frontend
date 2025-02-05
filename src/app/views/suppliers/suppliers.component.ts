@@ -37,7 +37,6 @@ export class SuppliersComponent implements OnInit {
 
   loadImages(suppliers: Supplier[]): void {
     suppliers.forEach((supplier) => {
-      console.log(supplier)
       if (supplier.imagePath && supplier.master) {
         const imageUrl =  this.imagesUrl + supplier.imagePath;
         this.imagesMaster.push(imageUrl);

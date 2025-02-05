@@ -1,0 +1,36 @@
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+    <div class="form-item">
+        <label for="supplierName">Supplier Name:</label>
+        <input
+          type="text"
+          id="supplierName"
+          formControlName="supplierName"
+        />
+        @if(supplierForm.get('supplierName')?.invalid && supplierForm.get('supplierName')?.touched) {
+            <div>
+              Supplier name is required.
+            </div>
+        }
+    </div>
+    <div class="form-item">
+        <label>Supplier Image:</label>
+        <input type="file" (change)="onFileSelect($event)" formControlName="imagePath" />
+        @if(supplierForm.get('imagePath')?.invalid && supplierForm.get('imagePath')?.touched) {
+            <div>
+              Image is required.
+            </div>
+        }
+    </div>
+    <div class="form-item checkbox-container">
+      <label for="isMaster">Fornecedor Master:</label>
+      <input
+        type="checkbox"
+        id="isMaster"
+        formControlName="isMaster"
+      />
+    </div>
+    <div class="form-item">
+        <app-button (clicked)="onSubmit()" type="submit" ></app-button>
+    </div>
+</form>
+  

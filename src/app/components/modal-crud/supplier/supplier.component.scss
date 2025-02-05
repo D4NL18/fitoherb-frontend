@@ -1,6 +1,6 @@
 form {
     display: flex;
-    gap: 0.5rem;
+    gap: 2rem;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -27,6 +27,24 @@ form {
             font-size: 1.25rem;
         }
 
+        input[type="checkbox"] {
+            box-shadow: none;
+            width: 2rem;
+            height: 2rem;
+            margin: 0;
+        }
+
+    }
+
+    .checkbox-container {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+        
+        label {
+            margin-top: 0;
+        }
     }
 
 

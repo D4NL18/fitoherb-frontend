@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ButtonComponent } from "../../button/button.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductsService } from '../../../services/products/products.service';
@@ -23,6 +23,8 @@ export class ProductComponent implements OnInit {
   suppliers: Supplier[] = []
   productsCategory: ProductCategory[] = []
   selectedFile: File | null = null;
+
+  @Output() sentForm = new EventEmitter<void>()
 
   productForm!: FormGroup;
 
@@ -81,8 +83,6 @@ export class ProductComponent implements OnInit {
       const productImageUrl = this.selectedFile!;
       const supplier = formValues.supplier;
       const productCategory = formValues.productCategory;
-
-      console.log(formValues)
 
       this.productsService.addProduct(
         productName, 
