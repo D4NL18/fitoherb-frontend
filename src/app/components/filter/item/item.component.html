@@ -1,6 +1,6 @@
 <div class="item-container">
     <button class="title-box" (click)="handleClick()">
-        <span>{{    categories.title   }}</span>
+        <span>{{    title   }}</span>
         @if(isClicked) {
             <mat-icon>keyboard_arrow_down</mat-icon>
         }@else {
@@ -9,9 +9,14 @@
         
     </button>
     <div class="checkbox-container">
-        @if (isClicked) {
-            @for (item of categories.boxes; track item) {
-                <app-checkbox [box]="item"></app-checkbox>
+        @if (isClicked && info == "categories") {
+            @for (item of categories; track item) {
+                <app-checkbox type="category" [title]="item.name"></app-checkbox>
+            }
+        }
+        @else if(isClicked && info == "suppliers") {
+            @for (item of suppliers; track item) {
+                <app-checkbox type="supplier" [title]="item.supplierName"></app-checkbox>
             }
         }
     </div>

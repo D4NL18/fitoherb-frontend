@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ItemComponent } from './item/item.component';
 import { ButtonApplyComponent } from "./button-apply/button-apply.component";
+import { ProductCategoryService } from '../../services/productCategory/product-category.service';
+import { ProductCategory } from '../../types/ProductCategory.interface';
 
 @Component({
   selector: 'app-filter',
@@ -10,12 +12,5 @@ import { ButtonApplyComponent } from "./button-apply/button-apply.component";
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
-
-  categories = [
-    { title: "Tecnologia", boxes: ["box1", "box2", "box3"] },
-    { title: "Mobiliário", boxes: ["box4", "box5", "box6"] },
-    { title: "Eletrodomésticos", boxes: ["box7", "box8", "box9"] },
-    { title: "Moda", boxes: ["box10", "box11", "box12"] },
-  ];
 
 }

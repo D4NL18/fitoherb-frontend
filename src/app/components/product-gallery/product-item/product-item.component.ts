@@ -10,8 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductItemComponent {
   @Input() title: string = ""
-  @Input() category: string = ""
+  @Input() supplier: string = ""
   @Input() description: string = ""
   @Input() imgUrl: string = ""
+  @Input() category: string = ""
 
 }

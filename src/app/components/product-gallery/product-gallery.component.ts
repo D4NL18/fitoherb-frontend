@@ -1,10 +1,11 @@
-import { Component, OnInit, inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { PagelistComponent } from '../pagelist/pagelist.component';
 import { Product } from '../../types/Product.interface';
 import { ProductsService } from '../../services/products/products.service';
 import { SearchProductsService } from '../../services/searchProducts/search-products.service';
-import { Subscription } from 'rxjs';
+import { isEmpty, Subscription } from 'rxjs';
+import { FilterService } from '../../services/filter/filter.service';
 
 @Component({
   selector: 'app-product-gallery',
@@ -17,6 +18,7 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
 
   searchProductsService = inject(SearchProductsService)
   productsService = inject(ProductsService)
+  filterService = inject(FilterService)
 
   updatedText$ = this.searchProductsService.textUpdated$;
 
@@ -26,6 +28,9 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
   paginatedProducts: Product[] = [];
   filterText: string = ""
 
+  categories: Array<string> = []
+  suppliers: Array<string> = []
+
   updatedTextSubscription = new Subscription()
 
   constructor() {
@@ -34,11 +39,20 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
       if(this.filterText != "") {
         this.loadFilterByNameProducts(this.filterText)
       }else {
-        this.updatedProducts = this.products
-        this.updatePaginatedProducts()
+        this.loadProducts()
       }
     })
     this.updatedTextSubscription.add(sub)
+
+    const categorySub = this.filterService.category$.subscribe(() => {
+      this.applyFilters();
+    });
+    this.updatedTextSubscription.add(categorySub);
+  
+    const supplierSub = this.filterService.supplier$.subscribe(() => {
+      this.applyFilters();
+    });
+    this.updatedTextSubscription.add(supplierSub);
   }
 
   ngOnInit() {
@@ -54,12 +68,34 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.products = response;
         this.updatedProducts = this.products;
+        this.applyFilters()
         this.updatePaginatedProducts();
       },
       error: (err) => {
         console.log("Erro ao receber produtos", err);
       }
     });
+  }
+
+  applyFilters() {
+    this.categories = this.filterService.getCategories();
+    this.suppliers = this.filterService.getSuppliers();
+    
+    if(this.filterText == "") {
+      this.updatedProducts = this.products.filter(product => 
+        (this.categories.length === 0 || this.categories.includes(product.productCategory.name.toLowerCase())) &&
+        (this.suppliers.length === 0 || this.suppliers.includes(product.supplier.supplierName.toLowerCase()))
+      );
+    }else {
+      this.loadFilterByNameProducts(this.filterText)
+      this.updatedProducts = this.updatedProducts.filter(product => 
+        (this.categories.length === 0 || this.categories.includes(product.productCategory.name.toLowerCase())) &&
+        (this.suppliers.length === 0 || this.suppliers.includes(product.supplier.supplierName.toLowerCase()))
+      );
+    }
+
+  
+    this.updatePaginatedProducts();
   }
 
   loadFilterByNameProducts(text: string) {

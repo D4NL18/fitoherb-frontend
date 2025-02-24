@@ -1,8 +1,13 @@
 <div class="gallery-container">
     <div class="items-container">
         @for (item of paginatedProducts; track item) {
-            <app-product-item [imgUrl]="item.productImageUrl" [category]="item.productCategory.name" [title]="item.productName"
-                [description]="item.productDescription"></app-product-item>
+            <app-product-item 
+                [imgUrl]="item.productImageUrl" 
+                [supplier]="item.supplier.supplierName" 
+                [title]="item.productName" 
+                [category]="item.productCategory.name"
+                [description]="item.productDescription">
+            </app-product-item>
             }
     </div>
     <div class="pagelist-container">
