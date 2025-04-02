@@ -30,6 +30,15 @@
       >
     </app-table>
     }
+    @else if (selectedItem == "users") {
+      <app-table 
+      [data]="users" 
+      [columns]="userColumns" 
+      (clickedDelete)="handleDeleteUser($event)"
+      (clickedEdit)="handleEditUser($event)"
+      >
+    </app-table>
+    }
   </div>
 </div>
 

@@ -1,0 +1,38 @@
+form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .form-item {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        justify-content: flex-end;
+
+        label {
+            margin-top: 0.5rem;
+            font-weight: 500;
+            color: var(--mainColor);
+            font-size: 1.5rem;
+        }
+    
+        input, select {
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: solid 1px #777;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 1.25rem;
+        }
+
+        span {
+            margin-left: 0.25rem;
+        }
+
+    }
+
+
+
+}

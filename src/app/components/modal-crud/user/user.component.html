@@ -1,1 +1,31 @@
-<p>user works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+    <div class="form-item">
+        <label>Nome do Usuário</label>
+        <input type="text" formControlName="user_name"  />
+        @if(userForm.get('user_name')?.invalid && userForm.get('user_name')!.touched) {
+            <p>Nome inválido</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>E-mail</label>
+        <input type="email" formControlName="email"  />
+        @if(userForm.get('email')?.invalid && userForm.get('email')!.touched) {
+            <p>E-mail inválido</p>
+        }
+    </div>
+    <div class="form-item">
+        <label>Senha</label>
+        <input type="password" formControlName="password" />
+        @if(userForm.get('password')?.invalid && userForm.get('password')!.touched) {
+            <p>Senha inválida</p>
+        }
+        @if(idEditing) {
+            <div>
+                <input type="checkbox" formControlName="changePassword" (change)="onChangePassword($event)" /> <span>Quero alterar a senha</span>
+            </div>
+        }
+    </div>
+    <div class="form-item">
+        <app-button (clicked)="onSubmit()" type="submit"></app-button>
+    </div>
+</form>

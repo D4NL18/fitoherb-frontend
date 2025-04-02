@@ -16,6 +16,8 @@ import { SelectedItemService } from '../../services/selectedItem/selected-item.s
 import { Subscription } from 'rxjs';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { ModalCRUDComponent } from "../../components/modal-crud/modal-crud.component";
+import { User } from '../../types/user.interface';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,6 +31,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   supplierService = inject(SuppliersService)
   productsService = inject(ProductsService)
   categoryService = inject(ProductCategoryService)
+  usersService = inject(UserService)
   selectedItemService = inject(SelectedItemService)
 
   updatedItem$ = this.selectedItemService.textUpdated$;
@@ -64,8 +67,15 @@ export class AdminComponent implements OnInit, OnDestroy {
     { key: 'edit', label: 'Editar' },
     { key: 'delete', label: 'Excluir' },
   ]
+  userColumns = [
+    { key: 'user_name', label: 'Nome do Usuário' },
+    { key: 'email', label: 'E-mail' },
+    { key: 'edit', label: 'Editar' },
+    { key: 'delete', label: 'Excluir' },
+  ];
 
   products: Product[] = []
+  users: User[] = []
   suppliers: Supplier[] = []
   categories: ProductCategory[] = []
   selectedItem: string = "products"
@@ -83,6 +93,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.loadProducts()
     this.loadSupplier()
     this.loadCategories()
+    this.loadUsers()
   }
 
   ngOnDestroy(): void {
@@ -97,6 +108,22 @@ export class AdminComponent implements OnInit, OnDestroy {
           ...product,
           supplierName: product.supplier?.supplierName || 'Sem fornecedor',
           categoryName: product.productCategory?.name || 'Sem Categoria',
+          edit: 'edit',
+          delete: 'delete'
+        }));
+      },
+      error: (err) => {
+        console.log("Erro ao receber produtos", err);
+      }
+    });
+  }
+
+  loadUsers(): void {
+    this.usersService.getAllUsers().subscribe({
+      next: (response) => {
+        this.users = response;
+        this.users = this.users.map(user => ({
+          ...user,
           edit: 'edit',
           delete: 'delete'
         }));
@@ -199,6 +226,21 @@ export class AdminComponent implements OnInit, OnDestroy {
     
   }
 
+  handleDeleteUser(i: number) {
+    const user = this.users[i]
+
+    this.usersService.deleteUser(user.user_id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.loadUsers()
+      },
+      error: (err) => {
+        console.log("Erro ao deletar user: ", err)
+      }
+    })
+    
+  }
+
   handleEditProduct(i: number) {
     this.isModalOpen = true
     this.idEditing = this.products[i].idProduct
@@ -212,6 +254,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   handleEditCategory(i: number) {
     this.isModalOpen = true
     this.idEditing = this.categories[i].idCategory
+  }
+
+  handleEditUser(i: number) {
+    this.isModalOpen = true
+    this.idEditing = this.users[i].user_id
   }
 
 }

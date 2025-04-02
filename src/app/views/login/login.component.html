@@ -1,0 +1,27 @@
+<div class="login-container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <h1>Bem Vindo(a)</h1>
+        <div class="form-field">
+            <label for="email">E-mail:</label>
+            <input id="email" formControlName="email" type="email" required />
+            @if(loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)) {
+                @if(loginForm.get('email')?.errors?.['required']) {
+                    <small>E-mail é necessário</small>
+                }
+                @if(loginForm.get('email')?.errors?.['email']) {
+                    <small>Formato inválido</small>
+                }
+            }
+        </div>
+        <div class="form-field">
+            <label for="password">Senha:</label>
+            <input id="password" formControlName="password" type="password" required />
+            @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+                @if(loginForm.get('password')?.errors?.['required']) {
+                    <small>Senha é necessária</small>
+                }
+            }
+        </div>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
 })
-export class ButtonComponent implements OnDestroy {
+export class ButtonComponent implements OnInit, OnDestroy {
 
   selectedItemService = inject(SelectedItemService)
   updatedItem$ = this.selectedItemService.textUpdated$;
@@ -31,10 +31,23 @@ export class ButtonComponent implements OnDestroy {
       }else if(text == "users") {
         this.text = "Usuários"
       }else if(text == "categories") {
-        this.text == "Categoria de Produto"
+        this.text = "Categoria de Produto"
       }
     })
     this.updatedTextSubscription.add(sub)
+  }
+  ngOnInit(): void {
+    this.text = this.selectedItemService.getSelectedItem
+    if(this.text=="products") {
+      this.text = "Produtos"
+    }else if(this.text=="suppliers") {
+      this.text = "Fornecedores"
+    }else if(this.text == "users") {
+      this.text = "Usuários"
+    }else if(this.text == "categories") {
+      this.text = "Categoria de Produto"
+    }
+    
   }
 
   ngOnDestroy(): void {
