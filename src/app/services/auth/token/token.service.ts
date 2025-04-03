@@ -9,6 +9,9 @@ export class TokenService {
   constructor() { }
 
   saveToken(token: string): void {
+    const expiresInMs = 3600 * 1000;
+    const expirationTime = Date.now() + expiresInMs;
+    localStorage.setItem('token_expiration', expirationTime.toString());
     return localStorage.setItem('access_token', token);
   }
 

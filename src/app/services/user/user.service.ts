@@ -66,4 +66,11 @@ export class UserService {
     formData.append('password', password);
     return this.http.put(`${this.apiUrl}/${user_id}`, formData);
   }
+
+  isTokenExpired() {
+    const expiration = localStorage.getItem('token_expiration');
+    if (!expiration) return true;
+
+    return Date.now() >= Number(expiration);
+  }
 }

@@ -6,6 +6,11 @@ export const authGuard = () => {
     const userService = inject(UserService);
     const router = inject(Router);
     
+    if(userService.isTokenExpired()) {
+        userService.logout()
+        router.navigate(['/admin']);
+    }
+    
     if(userService.isLoggedIn()) {
         return true
     }else {
