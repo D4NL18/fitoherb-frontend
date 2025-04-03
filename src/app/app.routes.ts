@@ -6,6 +6,7 @@ import { SuppliersComponent } from './views/suppliers/suppliers.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { AdminComponent } from './views/admin/admin.component';
 import { LoginComponent } from './views/login/login.component';
+import { authGuard } from './services/auth/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,7 @@ export const routes: Routes = [
     },
     {
         path: "admin/dashboard",
-        component: AdminComponent
+        component: AdminComponent,
+        canActivate: [authGuard]
     }
 ];

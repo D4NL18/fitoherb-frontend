@@ -42,6 +42,16 @@
   </div>
 </div>
 
+<app-logout (logout)="handleLogout()" />
+@if(isModalLogoutOpen) {
+  <app-modal-logout 
+  (closeModal)="handleLogout()" 
+  title="Are you sure you want to log out?"
+  confirmIcon="logout"
+  refuseIcon="close"
+  />
+}
+
 @if(isModalOpen) {
   <app-modal-crud (clicked)="handleModalClose()" [selectedItem]="selectedItem" (sentForm)="handleCreated()" [idEditing]="idEditing" />
 }

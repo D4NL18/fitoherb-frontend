@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     try {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: (response) => {
-          console.log(response)
           this.userService.saveToken(response.token);
           this.router.navigate(['/admin/dashboard']);
         },

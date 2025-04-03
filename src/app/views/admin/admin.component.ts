@@ -18,11 +18,13 @@ import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { ModalCRUDComponent } from "../../components/modal-crud/modal-crud.component";
 import { User } from '../../types/user.interface';
 import { UserService } from '../../services/user/user.service';
+import { LogoutComponent } from "./components/logout/logout.component";
+import { ModalConfirmComponent } from "../../components/modal-confirm/modal-confirm.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ButtonComponent, NavbarComponent, ModalCRUDComponent],
+  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ButtonComponent, NavbarComponent, ModalCRUDComponent, LogoutComponent, ModalConfirmComponent],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
@@ -81,6 +83,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   selectedItem: string = "products"
   isModalOpen: boolean = false
   idEditing: string = ""
+  isModalLogoutOpen: boolean = false
   
   constructor() {
     const sub = this.updatedItem$.subscribe((text) => {
@@ -259,6 +262,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   handleEditUser(i: number) {
     this.isModalOpen = true
     this.idEditing = this.users[i].user_id
+  }
+
+  handleLogout() {
+    this.isModalLogoutOpen = !this.isModalLogoutOpen
   }
 
 }
