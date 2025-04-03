@@ -9,7 +9,7 @@
       <app-table 
       [data]="products" 
       [columns]="productColumns" 
-      (clickedDelete)="handleDeleteProduct($event)"
+      (clickedDelete)="openModalDelete('products', $event)"
       (clickedEdit)="handleEditProduct($event)"
       >
     </app-table>
@@ -17,7 +17,7 @@
       <app-table 
       [data]="suppliers" 
       [columns]="supplierColumns" 
-      (clickedDelete)="handleDeleteSupplier($event)"
+      (clickedDelete)="openModalDelete('suppliers', $event)"
       (clickedEdit)="handleEditSupplier($event)"
       >
     </app-table>
@@ -25,7 +25,7 @@
       <app-table 
       [data]="categories" 
       [columns]="categoryColumns" 
-      (clickedDelete)="handleDeleteCategory($event)"
+      (clickedDelete)="openModalDelete('categories', $event)"
       (clickedEdit)="handleEditCategory($event)"
       >
     </app-table>
@@ -34,7 +34,7 @@
       <app-table 
       [data]="users" 
       [columns]="userColumns" 
-      (clickedDelete)="handleDeleteUser($event)"
+      (clickedDelete)="openModalDelete('users', $event)"
       (clickedEdit)="handleEditUser($event)"
       >
     </app-table>
@@ -42,12 +42,23 @@
   </div>
 </div>
 
-<app-logout (logout)="handleLogout()" />
+<app-logout (logout)="handleLogoutModal()" />
 @if(isModalLogoutOpen) {
-  <app-modal-logout 
-  (closeModal)="handleLogout()" 
-  title="Are you sure you want to log out?"
+  <app-modal-confirm 
+  (closeModal)="handleLogoutModal()"
+  (confirm)="handleLogout()"
+  title="Deseja deslogar?"
   confirmIcon="logout"
+  refuseIcon="close"
+  />
+}
+
+@if(isModalDeleteOpen) {
+  <app-modal-confirm 
+  (closeModal)="closeModalDelete()"
+  (confirm)="handleDelete()"
+  title="Deseja deletar este item?"
+  confirmIcon="check"
   refuseIcon="close"
   />
 }

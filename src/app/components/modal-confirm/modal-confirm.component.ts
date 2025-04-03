@@ -5,7 +5,7 @@ import { UserService } from '../../services/user/user.service';
 
 
 @Component({
-  selector: 'app-modal-logout',
+  selector: 'app-modal-confirm',
   standalone: true,
   imports: [MatIconModule],
   templateUrl: './modal-confirm.component.html',
@@ -13,10 +13,10 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ModalConfirmComponent {
 
-  private router = inject(Router)
-  private userService = inject(UserService)
+
 
   @Output() closeModal = new EventEmitter<void>();
+  @Output() confirm = new EventEmitter<void>();
   @Input() title: string = ""
   @Input() confirmIcon: string = ""
   @Input() refuseIcon: string = ""
@@ -25,8 +25,7 @@ export class ModalConfirmComponent {
     this.closeModal.emit()
   }
 
-  handleLogout() {
-    this.userService.logout()
-    this.router.navigate(['/admin'])
+  handleConfirm() {
+    this.confirm.emit()
   }
 }

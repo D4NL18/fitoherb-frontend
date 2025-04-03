@@ -20,6 +20,7 @@ import { User } from '../../types/user.interface';
 import { UserService } from '../../services/user/user.service';
 import { LogoutComponent } from "./components/logout/logout.component";
 import { ModalConfirmComponent } from "../../components/modal-confirm/modal-confirm.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -35,6 +36,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   categoryService = inject(ProductCategoryService)
   usersService = inject(UserService)
   selectedItemService = inject(SelectedItemService)
+  private router = inject(Router)
 
   updatedItem$ = this.selectedItemService.textUpdated$;
 
@@ -84,6 +86,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   isModalOpen: boolean = false
   idEditing: string = ""
   isModalLogoutOpen: boolean = false
+  isModalDeleteOpen: boolean = false
+  modalDeleteType: string = ""
+  idDeleting: number = 0
   
   constructor() {
     const sub = this.updatedItem$.subscribe((text) => {
@@ -205,7 +210,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.supplierService.deleteSupplier(supplier.supplierId).subscribe({
       next: (response) => {
-        console.log(response)
         this.loadSupplier()
       },
       error: (err) => {
@@ -227,6 +231,33 @@ export class AdminComponent implements OnInit, OnDestroy {
       }
     })
     
+  }
+
+  openModalDelete(type: string, i: number) {
+    this.isModalDeleteOpen = !this.isModalDeleteOpen
+    this.modalDeleteType = type
+    this.idDeleting = i
+  }
+
+  closeModalDelete() {
+    this.isModalDeleteOpen = !this.isModalDeleteOpen
+  }
+
+  handleDelete() {
+    console.log(this.modalDeleteType)
+    if(this.modalDeleteType === "categories") {
+      this.handleDeleteCategory(this.idDeleting)
+    }
+    else if(this.modalDeleteType === "suppliers") {
+      this.handleDeleteSupplier(this.idDeleting)
+    }
+    else if(this.modalDeleteType === "products") {
+      this.handleDeleteProduct(this.idDeleting)
+    }
+    else if(this.modalDeleteType === "users") {
+      this.handleDeleteUser(this.idDeleting)
+    }
+    this.closeModalDelete()
   }
 
   handleDeleteUser(i: number) {
@@ -264,8 +295,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.idEditing = this.users[i].user_id
   }
 
-  handleLogout() {
+  handleLogoutModal() {
     this.isModalLogoutOpen = !this.isModalLogoutOpen
+  }
+
+  handleLogout() {
+    this.usersService.logout()
+    this.router.navigate(['/admin'])
   }
 
 }
