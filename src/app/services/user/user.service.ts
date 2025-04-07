@@ -4,14 +4,13 @@ import { User } from '../../types/user.interface';
 import { TokenService } from '../auth/token/token.service';
 import {jwtDecode} from 'jwt-decode';	
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl = `${environment.apiUrl}/users`;
+  private apiUrl = 'http://localhost:8080/users';
 
   private userSubject = new BehaviorSubject<User | null>(null);
   private tokenService = inject(TokenService);
