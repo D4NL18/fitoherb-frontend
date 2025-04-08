@@ -19,6 +19,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   categoryForm!: FormGroup
 
   @Output() sentForm = new EventEmitter<void>()
+  @Output() error = new EventEmitter<void>()
   @Input() idEditing: string = ""
 
   category: ProductCategory = {idCategory: "", name: ""}
@@ -60,6 +61,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.log("Erro ao adicionar categoria: ", err)
+          this.error.emit()
         }
       })
     }

@@ -1,0 +1,12 @@
+<button (click)="handleCloseModal()" class="modal-overlay"></button>
+<div class="entire-modal">
+    <div class="close-modal-box">
+        <button (click)="handleCloseModal()"><mat-icon>close</mat-icon></button>
+    </div>
+    <div class="modal-content">
+        <mat-icon class="modal-icon" [ngClass]="color">{{icon}}</mat-icon>
+        <h2>{{title}}</h2>
+        <div class="modal-buttons">
+            <button [ngClass]="color" (click)="handleCloseModal()">Ok</button>
+        </div>
+</div>

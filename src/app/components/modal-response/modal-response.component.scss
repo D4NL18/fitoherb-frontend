@@ -1,0 +1,100 @@
+$iconSize: 4rem;
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    cursor: default;
+    border: 0;
+}
+
+.entire-modal {
+    background-color: #FEFEFE;
+    width: 40vw;
+    max-height: 50vh;
+    position: absolute;
+    left: 30vw;
+    top: 30vh;
+    z-index: 20;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    border: solid 1px black;
+    padding: 0 2rem 2rem 2rem;
+
+    .close-modal-box {
+        display: flex;
+        justify-content: flex-end;
+        margin: 2rem 0 0 0;
+
+        button {
+            background-color: transparent;
+            border: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .modal-icon {
+            font-size: $iconSize;
+            width: $iconSize;
+            height: $iconSize;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: #38582F;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .modal-buttons {
+            button {
+                background-color: var(--mainColor);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5rem;
+                margin: 1rem 0 0 0;
+                padding: 0.75rem 1.25rem;
+                color: white;
+                border: 0;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                border-radius: 0.25rem;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+
+            .red {
+                background-color: red;
+            }
+    
+            .green {
+                background-color: #38582F;
+            }
+        }
+    }
+}

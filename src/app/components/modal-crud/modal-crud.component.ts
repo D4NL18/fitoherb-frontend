@@ -16,6 +16,7 @@ export class ModalCRUDComponent {
 
   @Output() clicked = new EventEmitter<any>()
   @Output() sentForm = new EventEmitter<any>()
+  @Output() error = new EventEmitter<any>()
   @Input() selectedItem: string = "products"
   @Input() idEditing: string = ""
 
@@ -24,6 +25,9 @@ export class ModalCRUDComponent {
   }
   handleSentForm(){
     this.sentForm.emit()
+  }
+  handleError(){
+    this.error.emit()
   }
 
 }

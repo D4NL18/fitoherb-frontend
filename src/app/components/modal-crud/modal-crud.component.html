@@ -4,12 +4,12 @@
         <button (click)="handleCloseModal()"><mat-icon>close</mat-icon></button>
     </div>
     @if(selectedItem == "products") {
-        <app-product (sentForm)="handleSentForm()" [idEditing]="idEditing" />
+        <app-product (sentForm)="handleSentForm()" [idEditing]="idEditing" (error)="handleError()" />
     }@else if(selectedItem == "users") {
-        <app-user (sentForm)="handleSentForm()" [idEditing]="idEditing" />
+        <app-user (sentForm)="handleSentForm()" [idEditing]="idEditing" (error)="handleError()" />
     }@else if(selectedItem == "categories") {
-        <app-category (sentForm)="handleSentForm()" [idEditing]="idEditing" />
+        <app-category (sentForm)="handleSentForm()" [idEditing]="idEditing" (error)="handleError()" />
     }@else if(selectedItem == "suppliers") {
-        <app-supplier (sentForm)="handleSentForm()" [idEditing]="idEditing" />
+        <app-supplier (sentForm)="handleSentForm()" [idEditing]="idEditing" (error)="handleError()" />
     }
 </div>

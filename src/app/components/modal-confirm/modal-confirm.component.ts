@@ -13,8 +13,6 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ModalConfirmComponent {
 
-
-
   @Output() closeModal = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();
   @Input() title: string = ""

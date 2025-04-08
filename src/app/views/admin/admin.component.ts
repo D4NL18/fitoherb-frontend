@@ -21,11 +21,12 @@ import { UserService } from '../../services/user/user.service';
 import { LogoutComponent } from "./components/logout/logout.component";
 import { ModalConfirmComponent } from "../../components/modal-confirm/modal-confirm.component";
 import { Router } from '@angular/router';
+import { ModalResponseComponent } from '../../components/modal-response/modal-response.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ButtonComponent, NavbarComponent, ModalCRUDComponent, LogoutComponent, ModalConfirmComponent],
+  imports: [ReactiveFormsModule, CommonModule, SelectDataComponent, TableComponent, ButtonComponent, NavbarComponent, ModalCRUDComponent, LogoutComponent, ModalConfirmComponent, ModalResponseComponent],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
@@ -87,7 +88,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   idEditing: string = ""
   isModalLogoutOpen: boolean = false
   isModalDeleteOpen: boolean = false
+  isModalResponseOpen: boolean = false
   modalDeleteType: string = ""
+  modalResponseType: "error" | "success" = "error"
   idDeleting: number = 0
   
   constructor() {
@@ -186,10 +189,26 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   handleCreated() {
     this.handleModalClose();
+    this.modalResponseType = "success"
+    this.isModalResponseOpen = true
     this.loadProducts()
     this.loadSupplier()
     this.loadCategories()
+    this.loadUsers()
   }
+
+  handleError() {
+    console.log("entrou 3")
+    this.modalResponseType = "error"
+    this.isModalResponseOpen = true
+  }
+
+  handleModalResponseClose() {
+    this.isModalResponseOpen = false
+    this.modalResponseType = "error"
+  }
+
+
 
   handleDeleteCategory(i: number) {
     const category = this.categories[i]
@@ -201,6 +220,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log("Erro ao deletar categoria: ", err)
+        this.modalResponseType = "error"
+        this.isModalResponseOpen = true
       }
     })
     
@@ -214,6 +235,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log("Erro ao deletar fornecedor: ", err)
+        this.modalResponseType = "error"
+        this.isModalResponseOpen = true
       }
     })
     
@@ -228,6 +251,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log("Erro ao deletar categoria: ", err)
+        this.modalResponseType = "error"
+        this.isModalResponseOpen = true
       }
     })
     
@@ -270,6 +295,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log("Erro ao deletar user: ", err)
+        this.modalResponseType = "error"
+        this.isModalResponseOpen = true
       }
     })
     
