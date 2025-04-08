@@ -1,64 +1,90 @@
+$boxSize: 250px; 
+
 .product-item-container {
 
     text-align: center;
 
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 500;
         margin: 0.25rem 0;
-        width: 300px;
+        width: $boxSize;
         white-space: nowrap;
         overflow: hidden; 
         text-overflow: ellipsis;
     }
-    
-    p {
-        font-size: 1.25rem;
-    }
-}
+
+    .info-container {
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
 
-.box {
-    width: 300px;
-    height: 300px;
-    border: solid 1px black;
-    margin: 0.5rem 0;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        p {
+            font-size: 1.25rem;
+        }
 
-    .background {
-        width: 298px;
-        height: 298px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        position: absolute;
-    }
+        .box {
+            width: $boxSize;
+            height: $boxSize;
+            margin: 0.5rem 0;
+        
+        
+            .background {
+                width: $boxSize;
+                height: $boxSize;
+                background-repeat: no-repeat;
+                background-size: contain;
+                position: absolute;
+                background-position: center;
+            }
+        
+            p {
+                width: 100%;
+                height: 100%;
+                font-size: 1rem;
+                text-align: justify;
+                padding: 1.5rem;
+                color: transparent;
+                
+            }
+        
+            
+        }
 
-    p {
-        width: 100%;
-        height: 100%;
-        font-size: 1.25rem;
-        text-align: justify;
-        padding: 1.5rem;
-        color: transparent;
+        
+        .box-container:hover .box {
+            transform: rotateY(180deg);
+            transition: 1s ease;
+        
+            .background {
+                filter: opacity(0.1);
+            }
+            
+            p {
+                color: black;
+                transform: scale(1.05) rotateY(180deg);
+                transition: 1s ease-out;
+                position: relative;
+            }
+        }
+
+        .under-info-container {
+            display: flex;
+            flex-direction: column;
+            p {
+                font-size: 1rem;
+                border-top: 1px solid black;
+                margin: 0;
+                padding: 0.25rem 0.5rem;
+                text-align: left;
+            }
+        }
+        
         
     }
-
     
+
 }
 
-.box-container:hover .box {
-    transform: scale(1.05) rotateY(180deg);
-    transition: 1s ease;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 
-    .background {
-        filter: opacity(0.5);
-    }
-    
-    p {
-        color: black;
-        transform: scale(1.05) rotateY(180deg);
-        transition: 1s ease-out;
-        position: relative;
-    }
-}

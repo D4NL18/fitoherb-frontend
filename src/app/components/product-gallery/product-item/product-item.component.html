@@ -1,11 +1,16 @@
 <div class="product-item-container">
     <h3 [title]="title">{{ title }}</h3>
-    <p>{{ supplier }}</p>
-    <p>{{ category }}</p>
-    <div class="box-container">
-        <div class="box">
-            <div class="background" [ngStyle]="{'background-image': 'url(http://localhost:8080/' + imgUrl + ')'}"></div>
-            <p>{{ description }}</p>
+    <div class="info-container">
+        <div class="box-container">
+            <div class="box">
+                <div class="background" [ngStyle]="{'background-image': 'url(http://localhost:8080/' + imgUrl + ')'}"></div>
+                <p>{{ description }}</p>
+            </div>
+        </div>
+        <div class="under-info-container">
+            <p><b>Marca:</b> {{ supplier }}</p>
+            <p><b>Categoria:</b> {{ category }}</p>
+            <p><b>Preço:</b> {{ price }}</p>
         </div>
     </div>
 </div>

@@ -14,5 +14,6 @@ export class ProductItemComponent {
   @Input() description: string = ""
   @Input() imgUrl: string = ""
   @Input() category: string = ""
+  @Input() price: number | "Preço Indisponível" = "Preço Indisponível"
 
 }
