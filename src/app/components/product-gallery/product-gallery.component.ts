@@ -1,16 +1,14 @@
 import { Component, OnInit, inject, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ProductItemComponent } from './product-item/product-item.component';
-import { PagelistComponent } from '../pagelist/pagelist.component';
 import { Product } from '../../types/Product.interface';
 import { ProductsService } from '../../services/products/products.service';
 import { SearchProductsService } from '../../services/searchProducts/search-products.service';
-import { isEmpty, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FilterService } from '../../services/filter/filter.service';
-
 @Component({
   selector: 'app-product-gallery',
   standalone: true,
-  imports: [ProductItemComponent, PagelistComponent],
+  imports: [ProductItemComponent],
   templateUrl: './product-gallery.component.html',
   styleUrl: './product-gallery.component.scss'
 })
@@ -24,9 +22,10 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
   updatedProducts: Product[] = []
-  itemsPerPage = 12;
   paginatedProducts: Product[] = [];
   filterText: string = ""
+  itemsPerPage: number = 12
+  loadMoreButton: boolean = true
 
   categories: Array<string> = []
   suppliers: Array<string> = []
@@ -126,22 +125,15 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
     this.updatePaginatedProducts();
   }
 
-  updatePaginatedProducts(page: number = 1) {
-    const startIndex = (page - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedProducts = this.updatedProducts.slice(startIndex, endIndex);
+  updatePaginatedProducts() {
+    this.paginatedProducts = this.updatedProducts.slice(0, this.itemsPerPage);
   }
 
-  totalPages() {
-    return Math.ceil(this.updatedProducts.length / this.itemsPerPage);
-  }
-
-  pags() {
-    return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
-  }
-
-  onPageChange(page: number) {
-    this.updatePaginatedProducts(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  onLoadMore() {
+    this.itemsPerPage += 12
+    this.updatePaginatedProducts();
+    if (this.paginatedProducts.length >= this.updatedProducts.length) {
+      this.loadMoreButton = false
+    }
   }
 }

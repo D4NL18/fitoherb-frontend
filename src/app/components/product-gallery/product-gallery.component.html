@@ -13,7 +13,5 @@
             </app-product-item>
             }
     </div>
-    <div class="pagelist-container">
-        <app-pagelist [pags]="pags()" (pageChange)="onPageChange($event)"></app-pagelist>
-    </div>
+    <button [class.invisible]="!loadMoreButton" (click)="onLoadMore()" class="load-more-button">Carregar Mais</button>
 </div>
