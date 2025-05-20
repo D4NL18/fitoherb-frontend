@@ -21,4 +21,11 @@
 
 .checkbox-container {
     padding: 0.25rem 1rem;
+    max-height: 0;
+    transition: max-height 1s ease-in;
+    overflow: hidden;
+}
+
+.expanded {
+    max-height: 1000px;
 }
