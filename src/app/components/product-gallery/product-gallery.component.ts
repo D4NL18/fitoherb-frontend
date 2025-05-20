@@ -132,8 +132,11 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
   }
 
   updateButtonVisible() {
+    console.log(this.paginatedProducts.length, this.updatedProducts.length)
     if (this.paginatedProducts.length && this.updatedProducts.length && this.paginatedProducts.length >= this.updatedProducts.length) {
       this.loadMoreButton = false
+    }else {
+      this.loadMoreButton = true
     }
   }
 
