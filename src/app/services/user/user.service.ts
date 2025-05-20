@@ -58,7 +58,7 @@ export class UserService {
     return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
 
-  editUser(user_id: string, user_name: string, email: string, password: string): Observable<any> {
+  editUser(user_id: string, user_name: string, email: string, password: string, isAdmin: boolean): Observable<any> {
     const formData = new FormData();
     formData.append('user_id', user_id);
     formData.append('user_name', user_name);

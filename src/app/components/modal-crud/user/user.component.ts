@@ -22,6 +22,7 @@ export class UserComponent {
     user_name: "",
     password: "",
     email: "",
+    isAdmin: false
   }
   @Input() idEditing: string = ""
   @Output() sentForm = new EventEmitter<void>()
@@ -34,6 +35,7 @@ export class UserComponent {
         user_name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
+        isAdmin: [false],
       });
   
       if(this.idEditing != "") {
@@ -53,7 +55,8 @@ export class UserComponent {
           user_name: ['', Validators.required],
           email: ['',[ Validators.required, Validators.email]],
           password: [{ value: '', disabled: true }],
-          changePassword: [false]
+          changePassword: [false],
+          isAdmin: [false],
         })
       }
     }
@@ -84,13 +87,15 @@ export class UserComponent {
         const user_name = formValues.user_name;
         const email = formValues.email;
         const password = formValues.password;
+        const isAdmin = formValues.isAdmin;
 
   
         this.userService.editUser(
           this.idEditing, 
           user_name, 
           email, 
-          password          
+          password,
+          isAdmin       
         ).subscribe({
           next: (response) => {
             console.log('Usuário editado com sucesso:', response);
@@ -109,11 +114,13 @@ export class UserComponent {
         const user_name = formValues.user_name;
         const email = formValues.email;
         const password = formValues.password;
+        const isAdmin = formValues.isAdmin;
   
         this.authService.register(
           user_name, 
           email, 
-          password
+          password,
+          isAdmin
         )
           .subscribe({
           next: (response) => {

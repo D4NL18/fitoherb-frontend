@@ -123,7 +123,6 @@ export class AdminComponent implements OnInit, OnDestroy {
           edit: 'edit',
           delete: 'delete'
         }));
-        console.log(this.products)
       },
       error: (err) => {
         console.log("Erro ao receber produtos", err);
