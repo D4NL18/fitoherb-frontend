@@ -8,7 +8,7 @@
         }
         
     </button>
-    <div class="checkbox-container" [class.expanded]="isClicked" [class.not-expanded]="!isClicked">
+    <div class="checkbox-container" [class.expanded]="isClicked">
         @if (isClicked && info == "categories") {
             @for (item of categories; track item) {
                 <app-checkbox type="category" [title]="item.name"></app-checkbox>
