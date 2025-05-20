@@ -22,7 +22,7 @@ export class UserComponent {
     user_name: "",
     password: "",
     email: "",
-    isAdmin: false
+    admin: false
   }
   @Input() idEditing: string = ""
   @Output() sentForm = new EventEmitter<void>()
@@ -45,6 +45,7 @@ export class UserComponent {
             this.userForm.patchValue({
               user_name: this.user.user_name,
               email: this.user.email,
+              isAdmin: this.user.admin,
             });
           },
           error: (err) => {

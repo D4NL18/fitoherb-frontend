@@ -1,9 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../types/user.interface';
 import { TokenService } from '../auth/token/token.service';
-import {jwtDecode} from 'jwt-decode';	
+import { jwtDecode } from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,16 @@ export class UserService {
   private userSubject = new BehaviorSubject<User | null>(null);
   private tokenService = inject(TokenService);
   private http = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID);
 
   constructor() {
     if(this.tokenService.hasToken()) {
-      this.decodeJWT()
+      this.decodeJWT();
     }
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
   decodeJWT() {
@@ -47,11 +53,11 @@ export class UserService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}`)
+    return this.http.get<User[]>(`${this.apiUrl}`);
   }
 
   getUserById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/id=${id}`)
+    return this.http.get<User>(`${this.apiUrl}/id=${id}`);
   }
 
   deleteUser(id: string): Observable<any> {
@@ -64,10 +70,13 @@ export class UserService {
     formData.append('user_name', user_name);
     formData.append('email', email);
     formData.append('password', password);
+    isAdmin ? formData.append('isAdmin', 'true') : formData.append('isAdmin', 'false');
     return this.http.put(`${this.apiUrl}/${user_id}`, formData);
   }
 
   isTokenExpired() {
+    if (!this.isBrowser()) return true;
+
     const expiration = localStorage.getItem('token_expiration');
     if (!expiration) return true;
 
