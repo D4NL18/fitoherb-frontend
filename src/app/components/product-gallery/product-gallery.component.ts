@@ -69,7 +69,6 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
         this.updatedProducts = this.products;
         this.applyFilters()
         this.updatePaginatedProducts();
-        this.updateButtonVisible()
       },
       error: (err) => {
         console.log("Erro ao receber produtos", err);
@@ -96,7 +95,6 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
 
   
     this.updatePaginatedProducts();
-    this.updateButtonVisible()
   }
 
   loadFilterByNameProducts(text: string) {
@@ -125,15 +123,16 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
     ]));
   
     this.updatePaginatedProducts();
-    this.updateButtonVisible()
   }
 
   updatePaginatedProducts() {
     this.paginatedProducts = this.updatedProducts.slice(0, this.itemsPerPage);
+    this.updateButtonVisible()
+
   }
 
   updateButtonVisible() {
-    if (this.paginatedProducts.length >= this.updatedProducts.length) {
+    if (this.paginatedProducts.length && this.updatedProducts.length && this.paginatedProducts.length >= this.updatedProducts.length) {
       this.loadMoreButton = false
     }
   }
@@ -141,6 +140,5 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
   onLoadMore() {
     this.itemsPerPage += 12
     this.updatePaginatedProducts();
-    this.updateButtonVisible()
   }
 }
