@@ -45,7 +45,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
-      price_in_cents: [0, Validators.required],
+      price_in_cents: ['', Validators.required],
       productDescription: ['', Validators.required],
       productImageUrl: ['', Validators.required],
       supplier: ['', Validators.required],
@@ -156,9 +156,11 @@ export class ProductComponent implements OnInit {
       const supplier = formValues.supplier;
       const productCategory = formValues.productCategory;
 
+      const price = this.formatPrice(price_in_cents)
+
       this.productsService.addProduct(
         productName, 
-        price_in_cents, 
+        price, 
         productDescription, 
         productImageUrl, 
         supplier, 
@@ -176,5 +178,11 @@ export class ProductComponent implements OnInit {
     } else {
       console.error('Form is invalid');
     }
+  }
+
+  formatPrice(price: number): number {
+    console.log("price: ", price)
+    console.log("price: ", price*100)
+    return price * 100;
   }
 }

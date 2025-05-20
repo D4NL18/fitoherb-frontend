@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   productColumns = [
     { key: 'productName', label: 'Nome do Produto' },
-    { key: 'price_in_cents', label: 'Preço (centavos)' },
+    { key: 'price', label: 'Preço' },
     { key: 'productDescription', label: 'Descrição' },
     { key: 'supplierName', label: 'Fornecedor' },
     { key: 'categoryName', label: 'Categoria' },
@@ -119,9 +119,11 @@ export class AdminComponent implements OnInit, OnDestroy {
           ...product,
           supplierName: product.supplier?.supplierName || 'Sem fornecedor',
           categoryName: product.productCategory?.name || 'Sem Categoria',
+          price: this.formatPrice(product.price_in_cents),
           edit: 'edit',
           delete: 'delete'
         }));
+        console.log(this.products)
       },
       error: (err) => {
         console.log("Erro ao receber produtos", err);
@@ -329,6 +331,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   handleLogout() {
     this.usersService.logout()
     this.router.navigate(['/admin'])
+  }
+
+  formatPrice(price: number) {
+    price = price/100
+    return price
   }
 
 }
